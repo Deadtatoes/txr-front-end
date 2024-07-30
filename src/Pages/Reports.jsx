@@ -1,8 +1,9 @@
+import { Button } from '@material-tailwind/react'
 
 export const Reports = () => {
   return (
     <div>
-      <h2>Hello</h2>
+      <h3>Reports page</h3>
     </div>
   )
 }

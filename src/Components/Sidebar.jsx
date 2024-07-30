@@ -35,12 +35,12 @@ const Sidebar = () => {
                     </ListItem>
                     </a>
                     
-                    <a href='/report'>
+                    <a href='/reports'>
                     <ListItem>
                         <ListItemPrefix>
                             <PresentationChartBarIcon className="h-5 w-5" />
                         </ListItemPrefix>
-                        Report
+                        Reports
                     </ListItem>
                     </a>
                     
