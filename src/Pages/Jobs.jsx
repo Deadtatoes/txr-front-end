@@ -1,6 +1,12 @@
 
 export const Jobs = () => {
   return (
-    <h2>Jobs Page</h2>
+    <div>
+      <h3>Jobs page</h3>
+
+
+
+      
+    </div>
   )
 }
