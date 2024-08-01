@@ -93,7 +93,7 @@ export const Totaltask = ({ isReportPage }) => {
 
     const HOME_TABLE_ROWS = [
         {
-            name: 'Anaella Alert',
+            name: 'Fees Alert',
             id: 3945492,
             jobtype: 'Mail'
         }
