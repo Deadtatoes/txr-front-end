@@ -93,7 +93,7 @@ const Navbar = () => {
     {
       label: 'Admin',
       icon: UserCircleIcon,
-      href: "settings"
+      href: "src/Pages/Settings.jsx"
     },
     {
       label: 'Sign Out',

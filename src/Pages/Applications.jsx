@@ -1,6 +1,10 @@
+import Datatable from "../Components/Datatable"
 
 export const Applications = () => {
   return (
-    <h2>Applications Page</h2>
+    <div>
+      <h3 id="head">Users page</h3>
+      <Datatable />
+    </div>
   )
 }

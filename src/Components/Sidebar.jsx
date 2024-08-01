@@ -53,7 +53,7 @@ const Sidebar = () => {
                             <ListItemPrefix>
                                 <BookOpenIcon className="h-5 w-5" />
                             </ListItemPrefix>
-                            Applications
+                            Users
                         </ListItem>
                     </a>
                     

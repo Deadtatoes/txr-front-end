@@ -129,8 +129,8 @@ const Floatingcard = ({ type }) => {
 
         case "balance":
             data = {
-                title: "USERS",
-                link: "See all balances",
+                title: "DATABASE",
+                link: "See all Tables",
                 icon: <UsersIcon />
             };
             break;
