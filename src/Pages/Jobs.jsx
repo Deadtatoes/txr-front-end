@@ -4,8 +4,6 @@ export const Jobs = () => {
     <div>
       <h3>Jobs page</h3>
 
-
-
       
     </div>
   )

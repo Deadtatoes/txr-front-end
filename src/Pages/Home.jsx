@@ -1,5 +1,7 @@
 import { Totaltask } from "../Components/Totaltask"
-import  Floatingcard  from "../Components/Widgets/Floatingcard"
+import Chart from "../Components/Widgets/Chart";
+import Featured from "../Components/Widgets/Featured";
+import Floatingcard from '../Components/Widgets/Floatingcard';
 
 export const Home = () => {
   
@@ -7,22 +9,44 @@ export const Home = () => {
   return (
     <div>
 
-         <div className='py-5 space-y-1'>
+         <div className='py-5 space-y-20'>
 
-            {/* Floating Cards */}
+            {/* FLOATING CARDS */}
             <div className="flex">
-              <Floatingcard />
-              <Floatingcard />
-              <Floatingcard />
-              <Floatingcard />
+              <Floatingcard type='user'id='user'/>
+              <Floatingcard type='order'id='order'/>
+              <Floatingcard type='earning'id='earning'/>
+              <Floatingcard type='balance'id='balance'/>
             </div>
             
+            {/* CHARTS AND FEATURES */}
+            <div id="charts & features" className="flex space-x-10">
+             
+             {/* Features */}
+              <div className="">
+                <Featured />
+              </div>
 
-            {/* TOTAL TASKS Table heading */}
-            <h2 className='mx-4 text-xl '>Total Tasks</h2>
-            <div className="max-w-md">
-              <Totaltask isReportPage={false} />
+              {/* Chart */}
+              <div className="flex-2">
+                <Chart />
+              </div>
+              
             </div>
+
+            <div className="p-5 m-5 shadow-custom" >
+
+              <div id="listContainer">
+                <div id="listTitle" style={{fontWeight: "500", color:"gray"}} className="mb-3.5 font-bold">Latest Tasks </div>
+
+                  {/* LATEST TASKS TABLE*/}
+                  <div className="">
+                    <Totaltask isReportPage={true} />
+                  </div>
+              </div>
+
+            </div>
+                        
          </div>
 
 

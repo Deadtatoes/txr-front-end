@@ -1,87 +1,4 @@
-// import { Card, Typography } from '@material-tailwind/react'
 
-// export const Totaltask = () => {
-
-//     const TABLE_HEAD = ["Name", "ID", "JobType","Created", "Updated", "TraceID"]
-  
-//     const TABLE_ROWS =[
-//       {
-//         name: 'Fees Alert',
-//         id: 3945492,
-//         jobtype: 'Mail',
-//         created: '23/04/18',
-//         updated: '24/12/08',
-//         TraceID: 'dd4hu2903'
-//       }
-//     ]
-  
-
-//   return (
-//     <div className='max-w-96'>
-//          <Card>
-
-//             <table>
-
-//                 <thead>
-//                     <tr>
-//                     {TABLE_HEAD.map((head) => (
-//                         <th key={head} className='border-b border-blue-gray-100 bg-blue-gray-50 p-4'>
-
-//                         <Typography 
-//                         variant='small'
-//                         color='blue-gray'
-//                         className='font-normal leading-none opacity-70'>
-//                             {head}
-//                         </Typography>
-
-//                         </th>
-//                     ))}
-//                     </tr>
-//                 </thead>
-
-
-//                 <tbody>
-//                     {TABLE_ROWS.map(({ name, id, jobtype }, index) => {
-//                         const isLast = index === TABLE_ROWS.length - 1;
-//                         const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-            
-//                         return (
-//                         <tr key={name}>
-//                             <td className={classes}>
-//                             <Typography variant="small" color="blue-gray" className="font-normal">
-//                                 {name}
-//                             </Typography>
-//                             </td>
-
-//                             <td className={`${classes} bg-blue-gray-50/50`}>
-//                             <Typography variant="small" color="blue-gray" className="font-normal">
-//                                 {id}
-//                             </Typography>
-//                             </td>
-
-//                             <td className={classes}>
-//                             <Typography variant="small" color="blue-gray" className="font-normal">
-//                                 {jobtype}
-//                             </Typography>
-//                             </td>
-                            
-//                             <td className={classes}>
-//                             <Typography variant="small" color="blue-gray" className="font-normal">
-//                                 {}
-//                             </Typography>
-//                             </td>
-//                         </tr>
-//                         );
-//                     })}
-//                 </tbody>
-
-//             </table>
-
-//         </Card>
-        
-//     </div>
-//   )
-// }
 
 
 import { Card, Typography } from '@material-tailwind/react'
@@ -106,6 +23,86 @@ export const Totaltask = ({ isReportPage }) => {
             created: '23/04/18',
             updated: '24/12/08',
             traceID: 'dd4hu2903'
+        },
+        {
+            name: 'Account Statement',
+            id: 2748365,
+            jobtype: 'Report',
+            created: '22/01/15',
+            updated: '23/05/22',
+            traceID: 'af6gd9183'
+        },
+        {
+            name: 'System Update',
+            id: 4857693,
+            jobtype: 'Notification',
+            created: '22/03/25',
+            updated: '22/07/14',
+            traceID: 'b7jsk2809'
+        },
+        {
+            name: 'Password Reset',
+            id: 5647391,
+            jobtype: 'Mail',
+            created: '22/06/08',
+            updated: '23/02/11',
+            traceID: 'c8lqv9310'
+        },
+        {
+            name: 'Invoice Reminder',
+            id: 6789123,
+            jobtype: 'Report',
+            created: '22/08/19',
+            updated: '23/03/09',
+            traceID: 'd2mwp5406'
+        },
+        {
+            name: 'Subscription Renewal',
+            id: 7834652,
+            jobtype: 'Notification',
+            created: '22/11/30',
+            updated: '23/01/25',
+            traceID: 'e3nwr6712'
+        },
+        {
+            name: 'Security Alert',
+            id: 8925476,
+            jobtype: 'Alert',
+            created: '23/01/22',
+            updated: '23/05/10',
+            traceID: 'f4oxu7823'
+        },
+        {
+            name: 'Account Update',
+            id: 9032584,
+            jobtype: 'Mail',
+            created: '23/03/15',
+            updated: '23/06/12',
+            traceID: 'g5pyw8934'
+        },
+        {
+            name: 'Monthly Summary',
+            id: 1012345,
+            jobtype: 'Report',
+            created: '23/04/05',
+            updated: '23/07/20',
+            traceID: 'h6qzx9045'
+        },
+        {
+            name: 'Payment Confirmation',
+            id: 1123456,
+            jobtype: 'Notification',
+            created: '23/05/30',
+            updated: '23/08/15',
+            traceID: 'i7rly0156'
+        },
+        {
+            name: 'Profile Update',
+            id: 1234567,
+            jobtype: 'Mail',
+            created: '23/07/10',
+            updated: '23/09/05',
+            traceID: 'j8smz1267'
         }
     ]
 
