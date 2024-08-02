@@ -8,7 +8,7 @@ export const Home = () => {
 
   return (
     <div>
-
+      
          <div className='py-5 space-y-20'>
 
             {/* FLOATING CARDS */}

@@ -5,8 +5,8 @@ import { Card, Typography } from '@material-tailwind/react'
 
 export const Totaltask = ({ isReportPage }) => {
 
-    const HOME_TABLE_HEAD = ["Name", "ID", "JobType"]
-    const REPORT_TABLE_HEAD = ["Name", "ID", "JobType", "Created", "Updated", "TraceID"]
+    const HOME_TABLE_HEAD = ["Description", "ID", "JobType"]
+    const REPORT_TABLE_HEAD = ["Description", "ID", "JobType", "Created", "Updated"]
 
     const HOME_TABLE_ROWS = [
         {
@@ -17,7 +17,7 @@ export const Totaltask = ({ isReportPage }) => {
     ]
     const REPORT_TABLE_ROWS = [
         {
-            name: 'Fees Alert',
+            description: 'Fees Alert',
             id: 3945492,
             jobtype: 'Mail',
             created: '23/04/18',
@@ -25,7 +25,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'dd4hu2903'
         },
         {
-            name: 'Account Statement',
+            description: 'Account Statement',
             id: 2748365,
             jobtype: 'Report',
             created: '22/01/15',
@@ -33,7 +33,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'af6gd9183'
         },
         {
-            name: 'System Update',
+            description: 'System Update',
             id: 4857693,
             jobtype: 'Notification',
             created: '22/03/25',
@@ -41,7 +41,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'b7jsk2809'
         },
         {
-            name: 'Password Reset',
+            description: 'Password Reset',
             id: 5647391,
             jobtype: 'Mail',
             created: '22/06/08',
@@ -49,7 +49,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'c8lqv9310'
         },
         {
-            name: 'Invoice Reminder',
+            description: 'Invoice Reminder',
             id: 6789123,
             jobtype: 'Report',
             created: '22/08/19',
@@ -57,7 +57,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'd2mwp5406'
         },
         {
-            name: 'Subscription Renewal',
+            description: 'Subscription Renewal',
             id: 7834652,
             jobtype: 'Notification',
             created: '22/11/30',
@@ -65,7 +65,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'e3nwr6712'
         },
         {
-            name: 'Security Alert',
+            description: 'Security Alert',
             id: 8925476,
             jobtype: 'Alert',
             created: '23/01/22',
@@ -73,7 +73,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'f4oxu7823'
         },
         {
-            name: 'Account Update',
+            description: 'Account Update',
             id: 9032584,
             jobtype: 'Mail',
             created: '23/03/15',
@@ -81,7 +81,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'g5pyw8934'
         },
         {
-            name: 'Monthly Summary',
+            description: 'Monthly Summary',
             id: 1012345,
             jobtype: 'Report',
             created: '23/04/05',
@@ -89,7 +89,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'h6qzx9045'
         },
         {
-            name: 'Payment Confirmation',
+            description: 'Payment Confirmation',
             id: 1123456,
             jobtype: 'Notification',
             created: '23/05/30',
@@ -97,7 +97,7 @@ export const Totaltask = ({ isReportPage }) => {
             traceID: 'i7rly0156'
         },
         {
-            name: 'Profile Update',
+            description: 'Profile Update',
             id: 1234567,
             jobtype: 'Mail',
             created: '23/07/10',
@@ -131,9 +131,9 @@ export const Totaltask = ({ isReportPage }) => {
                     <tbody>
                         {TABLE_ROWS.map((row, index) => (
                             <tr key={row.id} className=''>
-                                {TABLE_HEAD.includes("Name") && (
+                                {TABLE_HEAD.includes("Description") && (
                                     <td className='p-4 bg-gray-100'>
-                                        <Typography variant='small' color='blue-gray' className='font-normal'>{row.name}</Typography>
+                                        <Typography variant='small' color='blue-gray' className='font-normal'>{row.description}</Typography>
                                     </td>
                                 )}
                                 {TABLE_HEAD.includes("ID") && (
@@ -156,11 +156,11 @@ export const Totaltask = ({ isReportPage }) => {
                                         <Typography variant='small' color='blue-gray' className='font-normal'>{row.updated}</Typography>
                                     </td>
                                 )}
-                                {TABLE_HEAD.includes("TraceID") && (
+                                {/* {TABLE_HEAD.includes("TraceID") && (
                                     <td className='p-4 bg-gray-200'>
                                         <Typography variant='small' color='blue-gray' className='font-normal'>{row.traceID}</Typography>
                                     </td>
-                                )}
+                                )} */}
                             </tr>
                         ))}
                     </tbody>

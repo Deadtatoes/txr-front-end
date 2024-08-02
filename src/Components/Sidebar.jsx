@@ -1,5 +1,6 @@
 import { Card, List, ListItem, ListItemPrefix, Typography } from '@material-tailwind/react'
 import { BookOpenIcon, CircleStackIcon, Cog6ToothIcon, FireIcon, PresentationChartBarIcon } from '@heroicons/react/16/solid'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
@@ -8,8 +9,11 @@ const Sidebar = () => {
 
             {/* App Name */}
                 <div className='flex mb -2 p-4 space-x-3' >
-                    <FireIcon className='h-9  w-5'/>
-                    <Typography variant='h4' color='blue-gray'>TXR</Typography>
+                    <Link to="/" className='flex'>
+                        <FireIcon className='h-9  w-5'/>
+                        <Typography variant='h4' color='blue-gray'>TXR</Typography>
+                    </Link>
+                   
                 </div>
                 <hr />
 
@@ -47,7 +51,7 @@ const Sidebar = () => {
 
 
                     
-                    <a href='/applications'>
+                    {/* <a href='/applications'>
                         <ListItem>
                         
                             <ListItemPrefix>
@@ -55,7 +59,7 @@ const Sidebar = () => {
                             </ListItemPrefix>
                             Users
                         </ListItem>
-                    </a>
+                    </a> */}
                     
 
                     <hr className='h-2 bg-grey 950'/>
