@@ -9,7 +9,7 @@ const Sidebar = () => {
 
             {/* App Name */}
                 <div className='flex mb -2 p-4 space-x-3' >
-                    <Link to="/" className='flex'>
+                    <Link to="/home" className='flex'>
                         <FireIcon className='h-9  w-5'/>
                         <Typography variant='h4' color='blue-gray'>TXR</Typography>
                     </Link>
@@ -20,7 +20,7 @@ const Sidebar = () => {
                 {/* List in SideBar */}
                 <List>
                     
-                    <a href='/'>
+                    <a href='/home'>
                     <ListItem id=''>
                         <ListItemPrefix>
                             <PresentationChartBarIcon className="h-5 w-5" />
@@ -51,7 +51,7 @@ const Sidebar = () => {
 
 
                     
-                    {/* <a href='/applications'>
+                    <a href='/applications'>
                         <ListItem>
                         
                             <ListItemPrefix>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                             </ListItemPrefix>
                             Users
                         </ListItem>
-                    </a> */}
+                    </a> 
                     
 
                     <hr className='h-2 bg-grey 950'/>
