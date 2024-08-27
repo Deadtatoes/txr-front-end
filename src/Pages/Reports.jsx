@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { Totaltask } from "../Components/Totaltask"
+import UserTable from "../Components/UserTable"
 
 export const Reports = () => {
   return (
@@ -10,17 +11,25 @@ export const Reports = () => {
 
       <div className="max-w-m p-5 m-5 shadow-custom rounded space-y-5">
         <span className="underline text-xl"> Task Database</span>
-        <Link to="/jobs" className="block w-full text-blue-600 hover:text-grey-600 transition-colors" >Add entry to database</Link> 
+        <Link to="/jobs" className="block w-full text-blue-600 hover:text-red-600 transition-colors" >Create new task</Link> 
 
         <Totaltask isReportPage={true}/>
       </div>
 
 
       <div>
-        <Link to="/jobs">
-          <span className="underline hover:bg-sky-700">Add entry into database</span>
-        </Link>
+        
       </div>
+
+      <div className="max-w-m p-5 m-5 shadow-custom rounded space-y-5">
+        <span className="underline text-xl"> Personnel Data</span>
+        <Link to="/jobs" className="block w-full text-blue-600 hover:text-red-600 transition-colors">
+          <span >Add entry into database</span>
+        </Link>
+        <UserTable />
+      </div>
+
+
 
     </div>
   )

@@ -2,20 +2,63 @@
 // 
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
+import {  collection, doc, serverTimestamp, setDoc, Timestamp } from "firebase/firestore"; 
+import { auth, db } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 export const Jobs = () => {
   const [receiverName, setReceiverName] = useState("");
   const [receiverEmail, setReceiverEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [data, setData] = useState({})
+  const navigate = useNavigate()
 
+
+  // UPLOADING TO FIREBASE DB
   const handleUpload = async(e) => {
-    // Handle upload logic here
-
+    // Upload logic here
+    e.preventDefault()
     // fireLine next
-  
-    
+    try{
+      const res = await createUserWithEmailAndPassword(
+        auth, 
+        data.email, 
+        data.password
+      )
+
+      await setDoc(doc(db, "users", res.user.uid), {
+        ...data,
+        Timestamp: serverTimestamp()
+      });
+      navigate("/reports")
+      console.log("Document is with ID: ", res.id )
+
+    }catch(error){
+      if(error.code === "auth/email-already-in-use"){
+        console.error("The email address is already in use by another account.")
+      }else{
+        console.error("An error occured", error)
+      }
+    }
   };
 
+
+
+  // SENDING DATA TO DB
+  const handleUserInput = (e) =>{
+    const id = e.target.id
+    const value =e.target.value
+
+    setData({...data, [id]: value})
+  }
+  console.log(data)
+
+
+
+
+  // EMAIL HANDLING
   const handleSendEmail = (e) => {
     e.preventDefault();
     // Handle send email logic here
@@ -27,55 +70,79 @@ export const Jobs = () => {
     <div id="newJob" className="">
       <div id="jobContainer" className="flex flex-col w-full">
         <div id="top" className="shadow-custom p-4 m-5">
-          <h2>Add new Entry</h2>
+          <h2>Add Personnel Into Database</h2>
         </div>
 
         <div id="bottom" className="shadow-custom p-4 m-5">
-          <form className="flex flex-wrap gap-4">
+
+          <form onSubmit={handleUpload} className="flex flex-wrap gap-4">
+            
+            
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <label>Username:</label>
               <input
+                id="username"
                 type="text"
                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
                 placeholder="john_doe"
+                onChange={handleUserInput}
               />
             </div>
 
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <label>Name and Surname:</label>
               <input
+                id="displayName"
                 type="text"
                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
                 placeholder="John Doe"
+                onChange={handleUserInput}
               />
             </div>
 
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <label>Email:</label>
               <input
+                id="email"
                 type="email"
                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
                 placeholder="john_doe@gmail.com"
+                onChange={handleUserInput}
+              />
+            </div>
+
+            <div className="w-full sm:w-1/2 lg:w-1/3">
+              <label>Password:</label>
+              <input
+                id="password"
+                type="password"
+                className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
+                placeholder="john_doe"
+                onChange={handleUserInput}
               />
             </div>
 
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <label>Phone:</label>
               <input
+                id="phoneNumber"
                 type="text"
                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
                 placeholder="+233 24 444 4444"
+                onChange={handleUserInput}
               />
             </div>
 
             <div className="w-full flex justify-start mt-4">
-              <Button size="sm" onClick={handleUpload}>Upload</Button>
+              <Button size="sm" type="submit">Upload</Button>
             </div>
           </form>
         </div>
 
+        {/* Email Container */}
         <div id="emailFormContainer" className="shadow-custom p-4 m-5">
-          <h2>Send Email</h2>
+          <h2>Select Job type</h2>
+          <hr />
           <form onSubmit={handleSendEmail} className="flex flex-wrap gap-4">
             <div className="w-full sm:w-1/2 lg:w-1/3">
               <label>Receiver Name:</label>
@@ -110,7 +177,7 @@ export const Jobs = () => {
             </div>
 
             <div className="w-full flex justify-start mt-4">
-              <Button size="sm" type="submit">Send Email</Button>
+              <Button size="sm" onClick={handleUpload}>Send Email</Button>
             </div>
           </form>
         </div>
@@ -119,145 +186,3 @@ export const Jobs = () => {
   );
 };
 
-
-
-// import { useState, useEffect } from "react";
-// import { Button } from "@material-tailwind/react";
-// import { auth, db } from "../firebase";
-// import { collection, getDocs } from "firebase/firestore";
-
-// export const Jobs = () => {
-//   const [receiverName, setReceiverName] = useState("");
-//   const [receiverEmails, setReceiverEmails] = useState([]);
-//   const [selectedEmails, setSelectedEmails] = useState([]);
-//   const [message, setMessage] = useState("");
-
-//   useEffect(() => {
-//     // Fetch emails from Firestore
-//     const fetchEmails = async () => {
-//       try {
-//         const emailsCollection = collection(db, "emails");
-//         const emailSnapshot = await getDocs(emailsCollection);
-//         const emailList = emailSnapshot.docs.map(doc => ({
-//           id: doc.id,
-//           email: doc.data().email
-//         }));
-//         setReceiverEmails(emailList);
-//       } catch (error) {
-//         console.error("Error fetching emails:", error);
-//       }
-//     };
-
-//     fetchEmails();
-//   }, []);
-
-//   const handleUpload = () => {
-//     // Handle upload logic here
-//   };
-
-//   const handleSendEmail = (e) => {
-//     e.preventDefault();
-//     // Handle send email logic here
-//     console.log("Receiver's Name:", receiverName);
-//     console.log("Selected Emails:", selectedEmails);
-//     console.log("Message:", message);
-//   };
-
-//   return (
-//     <div id="newJob" className="">
-//       <div id="jobContainer" className="flex flex-col w-full">
-//         <div id="top" className="shadow-custom p-4 m-5">
-//           <h2>Add new Entry</h2>
-//         </div>
-
-//         <div id="bottom" className="shadow-custom p-4 m-5">
-//           <form className="flex flex-wrap gap-4">
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Username:</label>
-//               <input
-//                 type="text"
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="john_doe"
-//               />
-//             </div>
-
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Name and Surname:</label>
-//               <input
-//                 type="text"
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="John Doe"
-//               />
-//             </div>
-
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Email:</label>
-//               <input
-//                 type="email"
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="john_doe@gmail.com"
-//               />
-//             </div>
-
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Phone:</label>
-//               <input
-//                 type="text"
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="+233 24 444 4444"
-//               />
-//             </div>
-
-//             <div className="w-full flex justify-start mt-4">
-//               <Button size="sm" onClick={handleUpload}>Upload</Button>
-//             </div>
-//           </form>
-//         </div>
-
-//         <div id="emailFormContainer" className="shadow-custom p-4 m-5">
-//           <h2>Send Email</h2>
-//           <form onSubmit={handleSendEmail} className="flex flex-wrap gap-4">
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Receiver's Name:</label>
-//               <input
-//                 type="text"
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="Receiver's Name"
-//                 value={receiverName}
-//                 onChange={(e) => setReceiverName(e.target.value)}
-//               />
-//             </div>
-
-//             <div className="w-full sm:w-1/2 lg:w-1/3">
-//               <label>Receiver's Email:</label>
-//               <select
-//                 multiple
-//                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-//                 value={selectedEmails}
-//                 onChange={(e) => setSelectedEmails(Array.from(e.target.selectedOptions, option => option.value))}
-//               >
-//                 {receiverEmails.map(email => (
-//                   <option key={email.id} value={email.email}>{email.email}</option>
-//                 ))}
-//               </select>
-//             </div>
-
-//             <div className="w-full">
-//               <label>Message:</label>
-//               <textarea
-//                 className="w-full outline outline-gray-600 h-20 focus:outline-blue-500 p-2 rounded"
-//                 placeholder="Your message here..."
-//                 value={message}
-//                 onChange={(e) => setMessage(e.target.value)}
-//               />
-//             </div>
-
-//             <div className="w-full flex justify-start mt-4">
-//               <Button size="sm" type="submit">Send Email</Button>
-//             </div>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };

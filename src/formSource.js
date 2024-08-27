@@ -1,46 +1,38 @@
-export const userInputs = [
+  export const userInputs = [
     {
-      id: 1,
-      label: "Username",
-      type: "text",
-      placeholder: "john_doe",
+        id: "username",
+        label: "Username",
+        type: "text",
+        placeholder: "john_doe",
+        divClass: "w-full sm:w-1/2 lg:w-1/3",
+        inputClass: "w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded",
     },
     {
-      id: 2,
-      label: "Name and surname",
-      type: "text",
-      placeholder: "John Doe",
+        id: "displayName",
+        label: "Name and surname",
+        type: "text",
+        placeholder: "John Doe",
+        divClass: "w-full sm:w-1/2 lg:w-1/3",
+        inputClass: "w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded",
     },
     {
-      id: 3,
-      label: "Email",
-      type: "mail",
-      placeholder: "john_doe@gmail.com",
+        id: "email",
+        label: "Email",
+        type: "email",
+        placeholder: "john_doe@gmail.com",
+        divClass: "w-full sm:w-1/2 lg:w-1/3",
+        inputClass: "w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded",
     },
     {
-      id: 4,
-      label: "Phone",
-      type: "text",
-      placeholder: "+1 234 567 89",
+        id: "phoneNumber",
+        label: "Phone",
+        type: "text",
+        placeholder: "+233 24 444 4444",
+        divClass: "w-full sm:w-1/2 lg:w-1/3",
+        inputClass: "w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded",
     },
-    {
-      id: 5,
-      label: "Password",
-      type: "password",
-    },
-    {
-      id: 6,
-      label: "Address",
-      type: "text",
-      placeholder: "Elton St. 216 NewYork",
-    },
-    {
-      id: 7,
-      label: "Country",
-      type: "text",
-      placeholder: "USA",
-    },
-  ];
+];
+
   
   export const productInputs = [
     {

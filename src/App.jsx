@@ -122,7 +122,7 @@ function App() {
                 {/* Main Content */}
                 <div className="flex-grow p-4 bg-slate-200 overflow-auto">
                   <Routes>
-                    <Route path="/" element={<Jobs inputs={userInputs} title="Add new Entry" />} />
+                    <Route path="/" element={<Jobs inputs={userInputs} title="Add new Entry to data" />} />
                   </Routes>
                 </div>
               </div>
@@ -206,7 +206,7 @@ function App() {
                 {/* Main Content */}
                 <div className="flex-grow p-4 bg-slate-200 overflow-auto">
                   <Routes>
-                  <Route path="/settings" element={<Settings />} />
+                    <Route path="/settings" element={<Settings />} />
                   </Routes>
                 </div>
               </div>
