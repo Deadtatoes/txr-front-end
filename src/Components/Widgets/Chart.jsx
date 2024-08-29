@@ -1,6 +1,5 @@
 
 
-
 import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [

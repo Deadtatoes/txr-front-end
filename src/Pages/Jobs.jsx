@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 
 export const Jobs = () => {
-  const [receiverName, setReceiverName] = useState("");
-  const [receiverEmail, setReceiverEmail] = useState("");
-  const [message, setMessage] = useState("");
+  // const [receiverName, setReceiverName] = useState("");
+  // const [receiverEmail, setReceiverEmail] = useState("");
+  // const [message, setMessage] = useState("");
   const [data, setData] = useState({})
   const navigate = useNavigate()
 
@@ -59,12 +59,12 @@ export const Jobs = () => {
 
 
   // EMAIL HANDLING
-  const handleSendEmail = (e) => {
-    e.preventDefault();
-    // Handle send email logic here
-    console.log("Email sent to:", receiverName, receiverEmail);
-    console.log("Message:", message);
-  };
+  // const handleSendEmail = (e) => {
+  //   e.preventDefault();
+  //   // Handle send email logic here
+  //   console.log("Email sent to:", receiverName, receiverEmail);
+  //   console.log("Message:", message);
+  // };
 
   return (
     <div id="newJob" className="">
@@ -140,7 +140,7 @@ export const Jobs = () => {
         </div>
 
         {/* Email Container */}
-        <div id="emailFormContainer" className="shadow-custom p-4 m-5">
+        {/* <div id="emailFormContainer" className="shadow-custom p-4 m-5">
           <h2>Select Job type</h2>
           <hr />
           <form onSubmit={handleSendEmail} className="flex flex-wrap gap-4">
@@ -180,7 +180,9 @@ export const Jobs = () => {
               <Button size="sm" onClick={handleUpload}>Send Email</Button>
             </div>
           </form>
-        </div>
+        </div> */}
+
+        
       </div>
     </div>
   );

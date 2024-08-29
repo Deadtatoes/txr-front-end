@@ -35,7 +35,7 @@ const Sidebar = () => {
                         <ListItemPrefix>
                             <CircleStackIcon className='h-5 w-5'/>
                         </ListItemPrefix>
-                        Jobs
+                        Users
                     </ListItem>
                     </a>
                     
@@ -57,7 +57,7 @@ const Sidebar = () => {
                             <ListItemPrefix>
                                 <BookOpenIcon className="h-5 w-5" />
                             </ListItemPrefix>
-                            Users
+                            Tasks
                         </ListItem>
                     </a> 
                     

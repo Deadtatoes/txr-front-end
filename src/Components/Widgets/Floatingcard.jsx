@@ -3,13 +3,19 @@ import PropTypes from 'prop-types'; // Import PropTypes
 import { UsersIcon } from "@heroicons/react/24/outline";
 import { ChartPieIcon } from "@heroicons/react/24/outline";
 import { ArchiveBoxArrowDownIcon, ClipboardDocumentIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from 'react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const Floatingcard = ({ type }) => {
+
+    const [amount, setAmount] = useState(null)
+   
 
     let data;
 
     // Temporary
-    const amount = 100;
+    // const amount = 100;
 
     switch(type){
         case "user":
@@ -52,6 +58,37 @@ const Floatingcard = ({ type }) => {
             };
             break;
     }
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const today = new Date()
+            const lastMonth = new Date().setMonth(today.getMonth() - 1)
+            const prevMonth = new Date().setMonth(today.getMonth() - 2)
+
+            const lastMonthQuery = query(
+                collection(db, "users"), 
+                where("timeStamp", "<=", today), 
+                where("timeStamp", ">", lastMonth)
+            )
+            const prevMonthQuery = query(
+                collection(db, "users"), 
+                where("timeStamp", "<=", lastMonth), 
+                where("timeStamp", ">", prevMonth)
+            )
+
+            const lastMonthData = await getDocs(lastMonthQuery)
+            const prevMonthData = await getDocs(prevMonthQuery)
+
+            // PRINTING OUT NUMBER OF ELEMENTS
+            setAmount(lastMonthData.docs.length)
+
+            console.log(lastMonthData)
+            console.log(prevMonthData)
+        }
+        fetchData()
+    },[])
+
+
 
   return (
       <div id="widget" className="mr-5 text-gray-300 bg-gray-900 flex-1 flex flex-col justify-between p-2 shadow-[2px_4px_10px_1px_rgba(0,0,0,0.47)] shadow-[2px_4px_10px_1px_rgba(201,201,201,0.47)] h-[120px] rounded-[10px] relative">

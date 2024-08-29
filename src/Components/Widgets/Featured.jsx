@@ -19,11 +19,11 @@ const Featured = () => {
 
             {/* Circular Chart */}
             <div id="featuredChart" className="w-24 h-24 md:w-32 md:h-32">
-                <CircularProgressbar value={70} text="70%" strokeWidth={5}/>
+                <CircularProgressbar value={30} text="30%" strokeWidth={5}/>
             </div>
 
             <p id="title" className="text-base md:text-lg font-medium">Total tasks done today</p>
-            <p id="amount" className="text-3xl font-bold">40</p>
+            <p id="amount" className="text-3xl font-bold">3</p>
             <p id="desc" className="text-xs text-center text-gray-500">Previous jobs processing. Last jobs may not be included within the chart</p>
 
             <div id="summary" className="flex flex-col md:flex-row items-center justify-between w-full text-center gap-4 mt-4">
@@ -33,7 +33,7 @@ const Featured = () => {
                         <div id="itemTitle" className="font-medium">Today</div>
                         <div id="ItemResult" className="flex items-center mt-2">
                             <CogIcon className="w-5 h-5 text-gray-500 mr-1"/>
-                            <div id="resultAmount" className="text-base font-semibold">12.4k</div>
+                            <div id="resultAmount" className="text-base font-semibold">-</div>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@ const Featured = () => {
                         <div id="itemTitle" className="font-medium">Last Week</div>
                         <div id="ItemResult" className="flex items-center mt-2">
                             <CogIcon className="w-5 h-5 text-gray-500 mr-1"/>
-                            <div id="resultAmount" className="text-base font-semibold">12.4k</div>
+                            <div id="resultAmount" className="text-base font-semibold">4</div>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@ const Featured = () => {
                         <div id="itemTitle" className="font-medium">Last Month</div>
                         <div id="ItemResult" className="flex items-center mt-2">
                             <CogIcon className="w-5 h-5 text-gray-500 mr-1"/>
-                            <div id="resultAmount" className="text-base font-semibold">12.4k</div>
+                            <div id="resultAmount" className="text-base font-semibold">11</div>
                         </div>
                     </div>
                 </div>

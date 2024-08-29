@@ -1,7 +1,11 @@
+// import TaskTable from "../Components/TaskTable";
 import { Totaltask } from "../Components/Totaltask"
 import Chart from "../Components/Widgets/Chart";
 import Featured from "../Components/Widgets/Featured";
 import Floatingcard from '../Components/Widgets/Floatingcard';
+import { Link } from "react-router-dom";
+
+
 
 export const Home = () => {
   
@@ -13,8 +17,15 @@ export const Home = () => {
 
             {/* FLOATING CARDS */}
             <div className="flex">
+
+              <Link to={"/reports"}>
               <Floatingcard type='user'id='user'/>
-              <Floatingcard type='order'id='order'/>
+              </Link>
+
+              <Link>
+                <Floatingcard type='order'id='order'/>
+              </Link>
+              
               <Floatingcard type='earning'id='earning'/>
               <Floatingcard type='balance'id='balance'/>
             </div>
@@ -42,6 +53,7 @@ export const Home = () => {
                   {/* LATEST TASKS TABLE*/}
                   <div className="">
                     <Totaltask isReportPage={true} />
+                    {/* <TaskTable /> */}
                   </div>
               </div>
 

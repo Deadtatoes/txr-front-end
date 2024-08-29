@@ -1,19 +1,20 @@
 import { Link } from "react-router-dom"
-import { Totaltask } from "../Components/Totaltask"
+// import { Totaltask } from "../Components/Totaltask"
 import UserTable from "../Components/UserTable"
+import TaskTable from "../Components/TaskTable"
 
 export const Reports = () => {
   return (
     <div className="space-y-14">
-      <h3>Reports page</h3>
 
       
 
       <div className="max-w-m p-5 m-5 shadow-custom rounded space-y-5">
         <span className="underline text-xl"> Task Database</span>
-        <Link to="/jobs" className="block w-full text-blue-600 hover:text-red-600 transition-colors" >Create new task</Link> 
+        <Link to="/applications" className="block w-full text-blue-600 hover:text-red-600 transition-colors" >Create new task</Link> 
 
-        <Totaltask isReportPage={true}/>
+        {/* <Totaltask isReportPage={true}/> */}
+        <TaskTable />
       </div>
 
 
