@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Button } from "@material-tailwind/react";
+import { addDoc, collection, doc, serverTimestamp, Timestamp } from "firebase/firestore"; 
+import { db } from "../firebase";
+
 
 
 const TaskList = ({formType}) => {
@@ -7,8 +10,11 @@ const TaskList = ({formType}) => {
     const [receiverName, setReceiverName] = useState("");
     const [receiverEmail, setReceiverEmail] = useState("");
     const [message, setMessage] = useState("");
-    const [reminderDate, setReminderDate] = useState("")
-    const [taskDescription, setTaskDescription] = useState("")
+
+
+    // FIRBASE DATA
+
+
 
     // Emaul Handling
     const handleSendEmail = (e) => {
@@ -19,11 +25,35 @@ const TaskList = ({formType}) => {
       };
 
     //   TASK HANDLING
-    const handleTask = (e) => {
+
+    const [taskData, setTaskData] = useState({})
+
+
+    const handleTaskInput = (e) => {
+        const id = e.target.id
+        const value = e.target.value
+
+        setTaskData({...taskData, [id]: value})
+    }
+    console.log(taskData)
+    
+    const handleTaskSubmit = async(e) => {
         e.preventDefault();
-        // Handle send email logic here
-        console.log("Email sent to:", receiverName, receiverEmail);
-        console.log("Message:", message);
+        // Handle send task logic here
+        
+
+        try{
+            const taskResponse = await addDoc(collection(db, "tasks"), {
+                ...taskData,
+                Timestamp: serverTimestamp()
+              });
+            console.log(taskResponse.id);
+        }catch(error){
+            console.log("Error adding task: ",error)
+        }
+
+        // setOpenMenu(false)
+       
       };
 
 
@@ -90,16 +120,29 @@ const TaskList = ({formType}) => {
             <br />
             <h2 className="my-3 text">Create a new Task</h2>
 
-            <form onSubmit={handleTask} className="flex flex-wrap gap-4">
+            <form onSubmit={handleTaskSubmit} className="flex flex-wrap gap-4">
 
                 <div className="w-full sm:w-1/2 lg:w-1/3">
                     <label>Task Description: </label>
                     <input
+                        id="description"
                         type="text"
                         className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
                         placeholder="Your task description here..."
-                        value={taskDescription}
-                        onChange={(e) => setTaskDescription(e.target.value)}
+                        // value={taskDescription}
+                        onChange={handleTaskInput}
+                    />
+                </div>
+                
+                <div className="w-full sm:w-1/2 lg:w-1/3">
+                    <label>Task type: </label>
+                    <input
+                        id="jobtype"
+                        type="text"
+                        className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
+                        placeholder="Your task description here..."
+                        // value={taskDescription}
+                        onChange={handleTaskInput}
                     />
                 </div>
 
@@ -107,15 +150,16 @@ const TaskList = ({formType}) => {
                 <div className="w-full sm:w-1/2 lg:w-1/3">
                     <label>Reminder Date:</label>
                     <input
+                        id="created"
                         type="date"
                         className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-                        value={reminderDate}
-                        onChange={(e) => setReminderDate(e.target.value)}
+                        // value={reminderDate}
+                        onChange={handleTaskInput}
                     />
                 </div>
 
                 <div className="w-full flex justify-start mt-4">
-                    <Button size="sm" onClick="submit">Add task</Button>
+                    <Button size="sm" type="submit">Add task</Button>
                 </div>
 
 
