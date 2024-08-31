@@ -1,13 +1,42 @@
 
+
 import { MagnifyingGlassIcon, PowerIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { Avatar, Button, Input, Menu, MenuHandler, MenuList, MenuItem, Typography, Badge, IconButton } from '@material-tailwind/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
+import { auth, db } from '../firebase'; // Import Firebase auth and db
 
 const Navbar = () => {
+  const [displayName, setDisplayName] = useState('Admin'); // Initialize state for displayName
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser; // Get current user
+        if (user) {
+          const docRef = doc(db, 'users', user.uid); // Reference to user's document
+          const docSnap = await getDoc(docRef); // Fetch the document
+
+          if (docSnap.exists()) {
+            setDisplayName(docSnap.data().displayName); // Set displayName from Firestore
+          } else {
+            console.log('No such document!');
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const profileMenuItems = [
     {
-      label: 'Admin',
+      label: displayName,
       icon: UserCircleIcon,
       href: "src/Pages/Settings.jsx"
     },
@@ -17,10 +46,7 @@ const Navbar = () => {
       icon: PowerIcon,
       href: "#"
     },
-  ]
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  ];
 
   // Close Menu function
   const closeMenu = () => {
@@ -64,13 +90,13 @@ const Navbar = () => {
                   <Avatar 
                     variant='circular'
                     size='xs'
-                    alt='tania andrew'
+                    alt='Profile Picture'
                     withBorder={true}
                     color='blue-gray'
                     className='absolute-right'
                     src='https://docs.material-tailwind.com/img/face-2.jpg'
                   />
-                  <Typography variant='h8'>Admin</Typography>
+                  <Typography variant='h8'>{displayName}</Typography>
                 </div>
               </Button>
             </MenuHandler>
@@ -113,4 +139,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-

@@ -32,11 +32,6 @@ export const Applications = () => {
   const [selectedForm, setSelectedForm] = useState(null)
 
 
-  // useEffect(() => {
-  //   const hash =window.location.hash
-  //   setSelectedForm(hash)
-  // }, [])
-
   // DISPLAYING FORMS BY CLICKS
   useEffect(() => {
     const handleHashChange = () => {

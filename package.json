@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@heroicons/react": "^2.1.5",
     "@material-tailwind/react": "^2.1.9",
     "@mui/material": "^5.16.7",
     "@mui/x-data-grid": "^7.14.0",
+    "emailjs-com": "^3.2.0",
     "esbuild": "^0.23.0",
     "firebase": "^10.12.5",
     "prop-types": "^15.8.1",
