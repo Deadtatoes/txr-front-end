@@ -4,12 +4,19 @@ export const taskColumns = [
          headerName: 'ID',
          width: 70 
     },
+    
+    { 
+        field: 'name', 
+        headerName: 'Task Name', 
+        width: 130 
+    },
 
     {
          field: 'description', 
         headerName: 'Description', 
         width: 130 
     },
+
 
     { 
         field: 'jobtype', 
@@ -22,11 +29,7 @@ export const taskColumns = [
         headerName: "Date",
         width: 80
     },
-    { 
-        field: 'priority',
-        headerName: "Status",
-        width: 100
-    }
+   
 ]
 
 export const taskRows = [

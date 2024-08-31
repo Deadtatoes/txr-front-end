@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import { addDoc, collection, doc, serverTimestamp, Timestamp } from "firebase/firestore"; 
 import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -27,6 +29,7 @@ const TaskList = ({formType}) => {
     //   TASK HANDLING
 
     const [taskData, setTaskData] = useState({})
+    const navigate = useNavigate();
 
 
     const handleTaskInput = (e) => {
@@ -51,6 +54,8 @@ const TaskList = ({formType}) => {
         }catch(error){
             console.log("Error adding task: ",error)
         }
+        navigate("/reports"); // Redirect to Home page after successful login
+        
 
         // setOpenMenu(false)
        
@@ -123,6 +128,18 @@ const TaskList = ({formType}) => {
             <form onSubmit={handleTaskSubmit} className="flex flex-wrap gap-4">
 
                 <div className="w-full sm:w-1/2 lg:w-1/3">
+                    <label>Task Name: </label>
+                    <input
+                        id="name"
+                        type="text"
+                        className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
+                        placeholder="Your task name here..."
+                        // value={taskDescription}
+                        onChange={handleTaskInput}
+                    />
+                </div>
+
+                <div className="w-full sm:w-1/2 lg:w-1/3">
                     <label>Task Description: </label>
                     <input
                         id="description"
@@ -140,7 +157,7 @@ const TaskList = ({formType}) => {
                         id="jobtype"
                         type="text"
                         className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-                        placeholder="Your task description here..."
+                        placeholder="Your task type here..."
                         // value={taskDescription}
                         onChange={handleTaskInput}
                     />

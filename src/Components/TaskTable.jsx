@@ -4,54 +4,52 @@ import { taskColumns } from "../TaskTableSource";
 import { useEffect, useState } from "react";
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import TaskEditForm from "./TaskEditForm";
 
 const TaskTable = () => {
   const [taskData, setTaskData] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
-    // const fetchTaskData = async () => {
-    //   try {
-    //     const taskList = [];
-    //     const querySnapshot = await getDocs(collection(db, "tasks"));
-    //     querySnapshot.forEach((doc) => {
-    //       taskList.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setTaskData(taskList);
-    //   } catch (error) {
-    //     console.log("Error fetching tasks:", error);
-    //   }
-    // };
+    const unsub = onSnapshot(
+      collection(db, "tasks"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setTaskData(list);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
-    // fetchTaskData();
-
-    const unsub = onSnapshot(collection(db, "tasks"), (snapShot) => {
-      let list = []
-      snapShot.docs.forEach(doc => {
-        list.push({id:doc.id, ...doc.data()})
-      })
-      setTaskData(list)
-    }, (error) => {
-      console.log(error);
-      
-    }
-  );
-
-  return() =>{
-    unsub()
-  }
+    return () => {
+      unsub();
+    };
   }, []);
 
   // Deleting Task
-  const handleDelete = async(id) => {
-    try{
+  const handleTaskDelete = async (id) => {
+    try {
       await deleteDoc(doc(db, "tasks", id));
-      setTaskData(taskData.filter(item=>item.id !== id))
-
-    }catch(error){
-      console.error();
-      
+      setTaskData(taskData.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error(error);
     }
     console.log("delete doc with id:", id);
+  };
+
+  const handleTaskView = (task) => {
+    setSelectedTask(task);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+    setSelectedTask(null);
   };
 
   const actionColumn = [
@@ -64,6 +62,7 @@ const TaskTable = () => {
           <div id="cellAction" className="flex items-center gap-4">
             <div
               id="viewButton"
+              onClick={() => handleTaskView(params.row)}
               className="mt-3 py-1 px-3 text-xs rounded-2xl text-blue-800 border-2 border-blue-400 hover:bg-red-600 hover:text-white transition-colors cursor-pointer m-1"
             >
               View
@@ -71,7 +70,7 @@ const TaskTable = () => {
 
             <div
               id="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleTaskDelete(params.row.id)}
               className="mt-3 py-1 px-3 text-xs rounded-2xl text-blue-800 border-2 border-blue-400 hover:bg-red-600 hover:text-white transition-colors cursor-pointer m-1"
             >
               Delete
@@ -98,6 +97,14 @@ const TaskTable = () => {
           sx={{ overflow: "clip" }}
         />
       </div>
+
+      {selectedTask && (
+        <TaskEditForm
+          open={openDialog}
+          handleClose={handleDialogClose}
+          taskData={selectedTask}
+        />
+      )}
     </div>
   );
 };
