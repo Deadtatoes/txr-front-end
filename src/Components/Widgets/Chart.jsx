@@ -3,12 +3,12 @@
 import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const data = [
-   {name: "January", Total: 12 },
-   {name: "February", Total: 21 },
-   {name: "March", Total: 8 },
-   {name: "April", Total: 14 },
-   {name: "May", Total: 9 },
-   {name: "June", Total: 3 },
+   {name: "March", Total: 12 },
+   {name: "April", Total: 21 },
+   {name: "May", Total: 8 },
+   {name: "June", Total: 14 },
+   {name: "July", Total: 9 },
+   {name: "August", Total: 3 },
 
 ];
 

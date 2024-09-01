@@ -1,5 +1,5 @@
 import { Card, List, ListItem, ListItemPrefix, Typography } from '@material-tailwind/react'
-import { BookOpenIcon, CircleStackIcon, Cog6ToothIcon, FireIcon, PresentationChartBarIcon } from '@heroicons/react/16/solid'
+import { BookOpenIcon, CircleStackIcon, FireIcon, PresentationChartBarIcon } from '@heroicons/react/16/solid'
 import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
@@ -64,7 +64,7 @@ const Sidebar = () => {
 
                     <hr className='h-2 bg-grey 950'/>
 
-                    <a href='/settings'>
+                    {/* <a href='/settings'>
                         <ListItem >
                             <ListItemPrefix>
                                 <Cog6ToothIcon className="h-5 w-5" />
@@ -72,7 +72,7 @@ const Sidebar = () => {
                             Settings
                         </ListItem>
                     </a>
-                
+                 */}
                 </List>
 
             </Card>
