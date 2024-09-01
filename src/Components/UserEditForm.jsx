@@ -40,7 +40,7 @@ const UserEditForm = ({ open, handleClose, userData }) => {
             <DialogContent>
                 <TextField
                 margin="dense"
-                name="name"
+                name="displayName"
                 label="Name"
                 type="text"
                 fullWidth
@@ -48,6 +48,8 @@ const UserEditForm = ({ open, handleClose, userData }) => {
                 value={user.displayName || ""}
                 onChange={handleChange}
                 />
+
+                
 
                 <TextField
                 margin="dense"

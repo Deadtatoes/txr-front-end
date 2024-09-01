@@ -108,7 +108,7 @@ export const Jobs = () => {
                 id="password"
                 type="password"
                 className="w-full outline outline-gray-600 h-10 focus:outline-blue-500 p-2 rounded"
-                placeholder="john_doe"
+                placeholder="john_doe[more than 6 characters]"
                 onChange={handleUserInput}
               />
             </div>

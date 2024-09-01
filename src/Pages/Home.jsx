@@ -1,9 +1,10 @@
-// import TaskTable from "../Components/TaskTable";
-import { Totaltask } from "../Components/Totaltask"
+import TaskTable from "../Components/TaskTable";
+// import { Totaltask } from "../Components/Totaltask"
 import Chart from "../Components/Widgets/Chart";
 import Featured from "../Components/Widgets/Featured";
 import Floatingcard from '../Components/Widgets/Floatingcard';
 import { Link } from "react-router-dom";
+
 
 
 
@@ -52,8 +53,8 @@ export const Home = () => {
 
                   {/* LATEST TASKS TABLE*/}
                   <div className="">
-                    <Totaltask isReportPage={true} />
-                    {/* <TaskTable /> */}
+                    {/* <Totaltask isReportPage={true} /> */}
+                    <TaskTable />
                   </div>
               </div>
 
